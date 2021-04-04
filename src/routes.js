@@ -1,5 +1,5 @@
 export default {
   home: 'Home',
-  login: 'Login',
-  signin: 'Sign in',
+  signin: 'Sign In',
+  signup: 'Sign Up',
 };

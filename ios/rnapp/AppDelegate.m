@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-#import Firebase
+#import <Firebase.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -37,7 +37,9 @@ static void InitializeFlipper(UIApplication *application) {
                                                    moduleName:@"rnapp"
                                             initialProperties:nil];
 
-  [FIRApp configure];
+  if ([FIRApp defaultApp] == nil) {
+     [FIRApp configure];
+   }
   
   if (@available(iOS 13.0, *)) {
       rootView.backgroundColor = [UIColor systemBackgroundColor];

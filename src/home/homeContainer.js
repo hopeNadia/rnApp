@@ -6,9 +6,15 @@ const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Button
-        title={'Login'}
+        title={'Sign In'}
         onPress={() => {
-          navigation.navigate(routes.login);
+          navigation.navigate(routes.signin);
+        }}
+      />
+      <Button
+        title={'Sign Up'}
+        onPress={() => {
+          navigation.navigate(routes.signup);
         }}
       />
     </View>

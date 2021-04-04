@@ -1,61 +1,30 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, TextInput} from 'react-native';
-import {Formik} from 'formik';
+import auth from '@react-native-firebase/auth';
+import * as Yup from 'yup';
+
+import {defaultErrorMessage, errorCodes} from '../constants';
+import BaseAuthForm from '../baseForm';
+import {Alert} from 'react-native';
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Required'),
+  password: Yup.string().required('Required'),
+});
 
 const LoginContainer = () => {
-  return (
-    <Formik
-      initialValues={{email: '', password: ''}}
-      onSubmit={values => console.warn(values)}>
-      {({handleChange, handleBlur, handleSubmit, values}) => (
-        <View style={styles.formContainer}>
-          <View style={styles.inputContainer}>
-            <TextInput
-              name="email"
-              placeholder="Email"
-              style={styles.input}
-              onChangeText={handleChange('email')}
-              value={values.email}
-            />
-          </View>
+  const onSubmit = async ({email, password}) => {
+    console.log('onSubmit', email, password);
+    try {
+      const response = await auth().signInWithEmailAndPassword(email, password);
 
-          <View style={styles.inputContainer}>
-            <TextInput
-              name="password"
-              placeholder="Password"
-              secureTextEntry={true}
-              style={styles.input}
-              onChangeText={handleChange('password')}
-              value={values.password}
-            />
-          </View>
-          <Button onPress={handleSubmit} title="Submit" />
-        </View>
-      )}
-    </Formik>
-  );
+      console.log('User signed in!', response);
+    } catch (error) {
+      const errorMessage = errorCodes[error.code] || defaultErrorMessage;
+      Alert.alert(null, errorMessage);
+    }
+  };
+
+  return <BaseAuthForm onSubmit={onSubmit} validationSchema={LoginSchema} />;
 };
-
-const styles = StyleSheet.create({
-  formContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    padding: 20,
-    justifyContent: 'center',
-    backgroundColor: 'white',
-  },
-  inputContainer: {
-    flex: 1,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: '#D9D5DC',
-    marginBottom: 10,
-    maxHeight: 50,
-  },
-  input: {
-    flex: 1,
-    color: 'rgba(0, 0, 0, 1)',
-  },
-});
 
 export default LoginContainer;
