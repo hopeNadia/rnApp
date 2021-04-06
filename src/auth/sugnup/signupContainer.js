@@ -5,19 +5,26 @@ import {Alert} from 'react-native';
 
 import BaseAuthForm from '../baseForm';
 import {defaultErrorMessage, errorCodes} from '../constants';
+import {useCurrentUser} from '../../user/userContext';
+import routes from '../../routes';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string().min(8).required('Required'),
 });
 
-const SignupContainer = () => {
+const SignupContainer = ({navigation}) => {
+  const {setUser} = useCurrentUser();
+
   const onSubmit = async ({email, password}) => {
     try {
       const response = await auth().createUserWithEmailAndPassword(
         email,
         password,
       );
+
+      setUser(response.user._user);
+      navigation.navigate(routes.app);
 
       console.log('User account created & signed in!', response);
     } catch (error) {
