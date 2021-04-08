@@ -1,13 +1,18 @@
 import React, {useEffect} from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {Button} from 'react-native-elements';
 import routes from '../routes';
-import {useCurrentUser} from '../user/userContext';
+import {useCurrentUser} from '../user';
+
+const isEmpty = obj => {
+  return Object.keys(obj).length === 0;
+};
 
 const HomeScreen = ({navigation}) => {
   const {user} = useCurrentUser();
 
   useEffect(() => {
-    if (user) {
+    if (user && !isEmpty(user)) {
       navigation.replace(routes.app);
     }
   }, [user, navigation]);
@@ -15,12 +20,14 @@ const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Button
+        containerStyle={styles.button}
         title={'Sign In'}
         onPress={() => {
           navigation.navigate(routes.signin);
         }}
       />
       <Button
+        containerStyle={styles.button}
         title={'Sign Up'}
         onPress={() => {
           navigation.navigate(routes.signup);
@@ -33,9 +40,12 @@ const HomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
+  },
+  button: {
+    marginHorizontal: 20,
+    marginBottom: 10,
   },
 });
 

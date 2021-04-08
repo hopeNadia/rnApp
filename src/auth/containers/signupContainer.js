@@ -3,9 +3,9 @@ import auth from '@react-native-firebase/auth';
 import * as Yup from 'yup';
 import {Alert} from 'react-native';
 
-import BaseAuthForm from '../baseForm';
+import BaseAuthForm from '../components/baseForm';
 import {defaultErrorMessage, errorCodes} from '../constants';
-import {useCurrentUser} from '../../user/userContext';
+import {useCurrentUser} from '../../user';
 import routes from '../../routes';
 
 const SignupSchema = Yup.object().shape({

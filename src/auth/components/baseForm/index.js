@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, StyleSheet, Button, Text, TextInput} from 'react-native';
+import {View, StyleSheet, Text, TextInput} from 'react-native';
+import {Button} from 'react-native-elements';
 import {Formik} from 'formik';
 
 const BaseFormComponent = ({onSubmit, validationSchema}) => {
@@ -33,7 +34,11 @@ const BaseFormComponent = ({onSubmit, validationSchema}) => {
               value={values.password}
             />
           </View>
-          <Button onPress={handleSubmit} title="Submit" />
+          <Button
+            onPress={handleSubmit}
+            title="Submit"
+            containerStyle={styles.button}
+          />
         </View>
       )}
     </Formik>
@@ -65,6 +70,9 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
+  },
+  button: {
+    margin: 20,
   },
 });
 

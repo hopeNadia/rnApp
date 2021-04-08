@@ -3,9 +3,9 @@ import auth from '@react-native-firebase/auth';
 import * as Yup from 'yup';
 
 import {defaultErrorMessage, errorCodes} from '../constants';
-import BaseAuthForm from '../baseForm';
+import BaseAuthForm from '../components/baseForm';
 import {Alert} from 'react-native';
-import {useCurrentUser} from '../../user/userContext';
+import {useCurrentUser} from '../../user';
 import routes from '../../routes';
 
 const LoginSchema = Yup.object().shape({
@@ -18,9 +18,11 @@ const LoginContainer = ({navigation}) => {
 
   const onSubmit = async ({email, password}) => {
     console.log('onSubmit', email, password);
+
     try {
       const response = await auth().signInWithEmailAndPassword(email, password);
       setUser(response.user._user);
+
       navigation.replace(routes.app);
 
       console.log('User signed in!', response.user._user, response);

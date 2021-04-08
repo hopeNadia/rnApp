@@ -2,6 +2,6 @@ export default {
   home: 'Home',
   signin: 'Sign In',
   signup: 'Sign Up',
-  app: 'App',
+  app: 'Content',
   userProfile: 'User profile',
 };
