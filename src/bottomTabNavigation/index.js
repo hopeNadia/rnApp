@@ -1,4 +1,3 @@
-import auth from '@react-native-firebase/auth';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -6,6 +5,7 @@ import {Header, Icon} from 'react-native-elements';
 
 import ChatBot from '../chatBot';
 import routes from '../routes';
+import {signOut} from '../servicies/authentication';
 import {User} from '../user';
 
 const Tab = createBottomTabNavigator();
@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigation = ({navigation}) => {
   const logout = async () => {
     try {
-      await auth().signOut();
+      await signOut();
 
       navigation.reset({
         index: 0,

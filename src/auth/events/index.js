@@ -1,6 +1,6 @@
-import auth from '@react-native-firebase/auth';
 import {useEffect, useCallback} from 'react';
 
+import {subscribeOnAuthStateChange} from '../../servicies/authentication';
 import {useCurrentUser} from '../../user';
 
 const AuthEvents = () => {
@@ -14,7 +14,7 @@ const AuthEvents = () => {
   );
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    const subscriber = subscribeOnAuthStateChange(onAuthStateChanged);
     return subscriber;
   }, [onAuthStateChanged]);
 

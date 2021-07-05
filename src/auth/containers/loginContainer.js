@@ -1,9 +1,9 @@
-import auth from '@react-native-firebase/auth';
 import React from 'react';
 import {Alert} from 'react-native';
 import * as Yup from 'yup';
 
 import routes from '../../routes';
+import {signInWithEmailAndPassword} from '../../servicies/authentication';
 import {useCurrentUser} from '../../user';
 import BaseAuthForm from '../components/baseForm';
 import {defaultErrorMessage, errorCodes} from '../constants';
@@ -17,15 +17,12 @@ const LoginContainer = ({navigation}) => {
   const {setUser} = useCurrentUser();
 
   const onSubmit = async ({email, password}) => {
-    console.log('onSubmit', email, password);
-
     try {
-      const response = await auth().signInWithEmailAndPassword(email, password);
-      setUser(response.user._user);
+      const {user} = await signInWithEmailAndPassword(email, password);
+
+      setUser(user);
 
       navigation.replace(routes.app);
-
-      console.log('User signed in!', response.user._user, response);
     } catch (error) {
       const errorMessage = errorCodes[error.code] || defaultErrorMessage;
       Alert.alert(null, errorMessage);

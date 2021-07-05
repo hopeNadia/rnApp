@@ -1,6 +1,10 @@
-import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react';
 import {Alert} from 'react-native';
+
+import {
+  getAuthCurrentUser,
+  updateUserProfile,
+} from '../servicies/authentication';
 
 import UserComponent from './userComponent';
 import {useCurrentUser} from './userContext';
@@ -11,13 +15,13 @@ const UserContainer = () => {
 
   const updateUser = async () => {
     try {
-      await auth().currentUser.updateProfile({
-        displayName: userName,
+      await updateUserProfile({
+        userName,
         // photoURL:
         //   'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/440px-Image_created_with_a_mobile_phone.png',
       });
 
-      const newUser = auth().currentUser;
+      const newUser = getAuthCurrentUser();
 
       setUser(newUser);
 
