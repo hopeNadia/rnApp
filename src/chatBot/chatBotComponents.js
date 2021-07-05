@@ -3,11 +3,12 @@ import {StyleSheet} from 'react-native';
 import {View, FlatList, Text} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 
-const ChatBotComponent = ({messages, onSendMessage}) => {
+const ChatBotComponent = ({messages, setText, onSendMessage}) => {
   const renderMessage = ({item}) => {
+    console.warn('render item', item);
     return (
-      <View>
-        <Text>{item.text}</Text>
+      <View style={styles.container}>
+        <Text style={{color: 'red'}}>{item.text}</Text>
       </View>
     );
   };
@@ -18,11 +19,8 @@ const ChatBotComponent = ({messages, onSendMessage}) => {
         renderItem={renderMessage}
         keyExtractor={item => item.id}
       />
-      <Input
-        placeholder="INPUT WITH ICON"
-        leftIcon={{type: 'font-awesome', name: 'chevron-left'}}
-      />
-      <Button title={'Send'} onPress={onSendMessage}/>
+      <Input placeholder="Message" onChangeText={value => setText(value)} />
+      <Button title={'Send'} onPress={onSendMessage} />
     </View>
   );
 };
