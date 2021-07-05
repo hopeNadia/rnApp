@@ -38,7 +38,10 @@ const BottomTabNavigation = ({navigation}) => {
           />
         )}
       />
-      <Tab.Navigator>
+      <Tab.Navigator
+        tabBarOptions={{
+          keyboardHidesTabBar: true,
+        }}>
         <Tab.Screen
           name={routes.userProfile}
           component={User}
