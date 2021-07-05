@@ -1,7 +1,7 @@
+import {Formik} from 'formik';
 import React from 'react';
 import {View, StyleSheet, Text, TextInput} from 'react-native';
 import {Button} from 'react-native-elements';
-import {Formik} from 'formik';
 
 const BaseFormComponent = ({onSubmit, validationSchema}) => {
   return (

@@ -1,5 +1,5 @@
-import {useEffect, useCallback} from 'react';
 import auth from '@react-native-firebase/auth';
+import {useEffect, useCallback} from 'react';
 
 import {useCurrentUser} from '../../user';
 

@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
-import {useCurrentUser} from './userContext';
 import auth from '@react-native-firebase/auth';
-import UserComponent from './userComponent';
+import React, {useState} from 'react';
 import {Alert} from 'react-native';
+
+import UserComponent from './userComponent';
+import {useCurrentUser} from './userContext';
 
 const UserContainer = () => {
   const {user, setUser} = useCurrentUser();

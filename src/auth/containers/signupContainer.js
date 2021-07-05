@@ -1,12 +1,12 @@
-import React from 'react';
 import auth from '@react-native-firebase/auth';
-import * as Yup from 'yup';
+import React from 'react';
 import {Alert} from 'react-native';
+import * as Yup from 'yup';
 
+import routes from '../../routes';
+import {useCurrentUser} from '../../user';
 import BaseAuthForm from '../components/baseForm';
 import {defaultErrorMessage, errorCodes} from '../constants';
-import {useCurrentUser} from '../../user';
-import routes from '../../routes';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),

@@ -4,4 +4,5 @@ export default {
   signup: 'Sign Up',
   app: 'Content',
   userProfile: 'User profile',
+  chatBot: 'Chat Bot',
 };

@@ -1,14 +1,14 @@
-import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
 
-import HomeScreen from '../home';
 import {
   AuthEvents,
   Login as LoginScreen,
   Signup as SignupScreen,
 } from '../auth';
-import routes from '../routes';
 import BottomTabNavigation from '../bottomTabNavigation';
+import HomeScreen from '../home';
+import routes from '../routes';
 
 const Stack = createStackNavigator();
 

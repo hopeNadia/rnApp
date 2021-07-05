@@ -1,6 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import {View, Image, TextInput, Text} from 'react-native';
+import {View, StyleSheet, Image, Text} from 'react-native';
 import {Button, Input, ListItem} from 'react-native-elements';
 
 const UserComponent = ({

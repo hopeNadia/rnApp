@@ -1,11 +1,12 @@
-import React from 'react';
 import auth from '@react-native-firebase/auth';
-import routes from '../routes';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
-import {User} from '../user';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Header, Icon} from 'react-native-elements';
+
+import ChatBot from '../chatBot';
+import routes from '../routes';
+import {User} from '../user';
 
 const Tab = createBottomTabNavigator();
 
@@ -45,6 +46,20 @@ const BottomTabNavigation = ({navigation}) => {
             tabBarIcon: ({color, size}) => (
               <Icon
                 name="account"
+                type="material-community"
+                color={color}
+                size={size}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={routes.chatBot}
+          component={ChatBot}
+          options={{
+            tabBarIcon: ({color, size}) => (
+              <Icon
+                name="robot"
                 type="material-community"
                 color={color}
                 size={size}

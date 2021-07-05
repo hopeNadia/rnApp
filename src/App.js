@@ -1,8 +1,8 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {UserProvider} from './user';
 import App from './app';
+import {UserProvider} from './user';
 
 const MyStack = () => {
   return (
